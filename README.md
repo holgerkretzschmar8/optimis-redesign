@@ -13,7 +13,7 @@ Live-Seite (React-App auf www.optimis-ai.com): kein gemeinsamer Code, kein Build
 | `assets/booking.js` | Termin-Pop-up mit Calendly. Link oben in der Datei bei `CALENDLY_URL` eintragen. Ohne Link bleiben die Buttons E-Mail-Links. Calendly lädt erst nach Zustimmung des Besuchers |
 | `assets/three.min.js` | 3D-Bibliothek für den Voice-Orb (three.js r128, MIT-Lizenz), lokal statt über ein CDN |
 
-Schriften (Bricolage Grotesque, Geist) kommen von Google Fonts.
+Schriften (Bricolage Grotesque, Geist, Geist Mono) liegen lokal in `assets/fonts` – keine Verbindung zu Google.
 
 **Chatbot-Widget:** unten rechts. Es nutzt dieselbe Chat-API wie die bisherige Seite
 (`https://optimis-ai-site.vercel.app/api/chat`). Gespräche landen also wie gewohnt in Supabase.
@@ -54,16 +54,23 @@ Auch Netlify Drop (Ordner per Drag & Drop) funktioniert.
 Die Seite hat `noindex` gesetzt. Google nimmt die Vorschau also nicht auf, und sie
 konkurriert nicht mit der Live-Seite.
 
-## Vor dem Go-Live (wenn die neue Seite die alte ersetzen soll)
+## Launch (Domain umziehen)
 
-- [ ] `<meta name="robots" content="noindex, nofollow">` in `index.html` entfernen
-- [ ] Rechtstexte (Impressum, Datenschutz, Nutzungsbedingungen) inhaltlich prüfen. Sie sind aus REV00
-      übernommen. Bei Änderungen an den Texten beide Versionen pflegen oder nur noch REV01
-- [ ] Datenschutzerklärung um einen Abschnitt zu Calendly ergänzen (Terminbuchung)
-- [ ] Google-Ads-Tag (AW-18065908893) und ggf. PostHog übernehmen, mit Cookie-Banner.
-      Absichtlich nicht in der Vorschau enthalten, damit Testbesuche eure Daten nicht verfälschen
-- [ ] Englische Version für SEO unter `/en` mit hreflang ausliefern
-      (der Umschalter in dieser Datei wechselt nur im Browser)
+1. Vercel → Projekt **optimis-ai-site** → Settings → Domains: `www.optimis-ai.com` und `optimis-ai.com` entfernen.
+2. Vercel → Projekt **rev01** → Settings → Domains: beide Domains hinzufügen (`optimis-ai.com` → Weiterleitung auf `www`).
+3. Das Projekt `optimis-ai-site` **nicht löschen**: Darüber läuft die Chat-API (`optimis-ai-site.vercel.app/api/chat`).
+4. Zurück zur alten Seite: Domains wieder umgekehrt zuordnen.
+
+Suchmaschinen: Auf `rev01.vercel.app` sendet Vercel `X-Robots-Tag: noindex` (siehe `vercel.json`).
+Unter www.optimis-ai.com ist die Seite indexierbar, alle Seiten verweisen per Canonical auf www.optimis-ai.com.
+Alte URLs (`/ki-beratung`, `/privacy-policy`, `/terms-of-service`, `/en/...`, `/de/...`) werden weitergeleitet.
+
+## Offen
+
+- [ ] Datenschutzerklärung um die Abschnitte aus `Entwurf_Datenschutz_Ergaenzungen.md` ergänzen (liegt im Ordner über REV01)
+- [ ] Calendly-Termin auf Deutsch umstellen
+- [ ] Optional: KI-Beratung-Seite im neuen Design (aktuell Weiterleitung auf die Startseite)
+- [ ] Optional: Google-Ads-Tracking (dann Cookie-Banner nötig), eigene /en-URLs
 
 ## Sprache
 

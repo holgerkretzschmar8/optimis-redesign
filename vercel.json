@@ -1,3 +1,37 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "optimis-ai.com" }], "destination": "https://www.optimis-ai.com/$1", "permanent": true },
+
+    { "source": "/privacy-policy", "destination": "/datenschutz", "permanent": true },
+    { "source": "/terms-of-service", "destination": "/nutzungsbedingungen", "permanent": true },
+    { "source": "/ki-beratung", "destination": "/", "permanent": false },
+
+    { "source": "/en", "destination": "/#en", "permanent": true },
+    { "source": "/en/privacy-policy", "destination": "/datenschutz", "permanent": true },
+    { "source": "/en/terms-of-service", "destination": "/nutzungsbedingungen", "permanent": true },
+    { "source": "/en/imprint", "destination": "/impressum", "permanent": true },
+    { "source": "/en/ai-consulting", "destination": "/#en", "permanent": false },
+    { "source": "/en/ki-beratung", "destination": "/#en", "permanent": false },
+    { "source": "/en/:path*", "destination": "/#en", "permanent": true },
+
+    { "source": "/de", "destination": "/", "permanent": true },
+    { "source": "/de/privacy-policy", "destination": "/datenschutz", "permanent": true },
+    { "source": "/de/terms-of-service", "destination": "/nutzungsbedingungen", "permanent": true },
+    { "source": "/de/:path*", "destination": "/", "permanent": true },
+
+    { "source": "/admin/:path*", "destination": "/", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "rev01.vercel.app" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
+    }
+  ]
 }
