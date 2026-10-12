@@ -9,7 +9,7 @@
  */
 (function () {
   // >>> Hier den Calendly-Link eintragen, z. B. "https://calendly.com/optimis-ai/beratung"
-  var CALENDLY_URL = "";
+  var CALENDLY_URL = "https://calendly.com/optimis-ai-info/new-meeting";
   // <<<
 
   var MAIL = "info@optimis-ai.com";
