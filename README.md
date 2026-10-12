@@ -67,7 +67,7 @@ Alte URLs (`/ki-beratung`, `/privacy-policy`, `/terms-of-service`, `/en/...`, `/
 
 ## Offen
 
-- [ ] Datenschutzerklärung um die Abschnitte aus `Entwurf_Datenschutz_Ergaenzungen.md` ergänzen (liegt im Ordner über REV01)
+- [x] Datenschutzerklärung ergänzt (Abschnitte 7 und 8, Stand 12.10.2026) – rechtliche Prüfung empfohlen
 - [ ] Calendly-Termin auf Deutsch umstellen
 - [ ] Optional: KI-Beratung-Seite im neuen Design (aktuell Weiterleitung auf die Startseite)
 - [ ] Optional: Google-Ads-Tracking (dann Cookie-Banner nötig), eigene /en-URLs
