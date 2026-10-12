@@ -8,6 +8,7 @@ Live-Seite (React-App auf www.optimis-ai.com): kein gemeinsamer Code, kein Build
 | Datei | Zweck |
 |---|---|
 | `index.html` | Die komplette Seite (HTML, CSS, JavaScript, DE/EN-Übersetzung) |
+| `ki-beratung.html`, `voice-agents.html`, `chatbots.html`, `automatisierung.html` | Leistungs-Unterseiten (DE/EN) mit eigenem Titel/Beschreibung für Google. KI-Beratung enthält das Anfrageformular (Formspree, wie auf der bisherigen Seite) |
 | `impressum.html`, `datenschutz.html`, `nutzungsbedingungen.html` | Rechtsseiten im neuen Design. Texte 1:1 aus der bisherigen Seite übernommen (Stand REV00) |
 | `assets/logo.webp` | Optimis-Logo, freigestellt (auch als Favicon genutzt) |
 | `assets/booking.js` | Termin-Pop-up mit Calendly. Link oben in der Datei bei `CALENDLY_URL` eintragen. Ohne Link bleiben die Buttons E-Mail-Links. Calendly lädt erst nach Zustimmung des Besuchers |
@@ -69,7 +70,7 @@ Alte URLs (`/ki-beratung`, `/privacy-policy`, `/terms-of-service`, `/en/...`, `/
 
 - [x] Datenschutzerklärung ergänzt (Abschnitte 7 und 8, Stand 12.10.2026) – rechtliche Prüfung empfohlen
 - [ ] Calendly-Termin auf Deutsch umstellen
-- [ ] Optional: KI-Beratung-Seite im neuen Design (aktuell Weiterleitung auf die Startseite)
+- [x] KI-Beratung-Seite im neuen Design (/ki-beratung)
 - [ ] Optional: Google-Ads-Tracking (dann Cookie-Banner nötig), eigene /en-URLs
 
 ## Sprache

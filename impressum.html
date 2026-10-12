@@ -252,7 +252,7 @@ h3{font-family:var(--f-display); font-weight:500; letter-spacing:-.02em; font-si
 
 footer{padding-block:56px 40px; color:var(--muted); font-size:14px}
 .foot{display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px; border-top:1px solid var(--line); padding-top:32px}
-.foot nav{display:flex; gap:24px}
+.foot nav{display:flex; flex-wrap:wrap; gap:10px 24px}
 .foot a{text-decoration:none}.foot a:hover{color:var(--text)}
 
 /* ---------- RESPONSIVE ---------- */
@@ -320,7 +320,7 @@ footer{padding-block:56px 40px; color:var(--muted); font-size:14px}
   <div class="wrap nav-in">
     <a class="logo" href="index.html" aria-label="Optimis AI Startseite" data-aria-en="Optimis AI home"><img id="logoImg" src="assets/logo.webp" alt="Optimis AI – Advanced Technology" width="143" height="46"></a>
     <nav class="nav-links" aria-label="Hauptnavigation">
-      <a href="index.html#ablauf" data-en="Process">Ablauf</a><a href="index.html#leistungen" data-en="Services">Leistungen</a><a href="index.html#warum" data-en="Why us">Warum wir</a><a href="index.html#kontakt" data-en="Contact">Kontakt</a>
+      <a href="index.html#ablauf" data-en="Process">Ablauf</a><a href="index.html#leistungen" data-en="Services">Leistungen</a><a href="ki-beratung.html" data-en="AI consulting">KI-Beratung</a><a href="index.html#warum" data-en="Why us">Warum wir</a><a href="index.html#kontakt" data-en="Contact">Kontakt</a>
     </nav>
     <div class="nav-right">
       <div class="lang" role="group" aria-label="Sprache"><button aria-pressed="true">DE</button><button aria-pressed="false">EN</button></div>
@@ -343,6 +343,7 @@ footer{padding-block:56px 40px; color:var(--muted); font-size:14px}
 <footer>
   <div class="wrap foot">
     <div style="display:flex;flex-direction:column;gap:12px"><img class="foot-logo" id="footLogo" alt="Optimis AI" width="106" height="34"><span data-en="© 2026 Optimis AI · Munich">© 2026 Optimis AI · München</span></div>
+    <nav class="foot-svc" aria-label="Leistungen"><a href="voice-agents.html" data-en="Voice agents">Voice Agents</a><a href="chatbots.html" data-en="Chatbots">Chatbots</a><a href="automatisierung.html" data-en="Automation">Automatisierung</a><a href="ki-beratung.html" data-en="AI consulting">KI-Beratung</a></nav>
     <nav aria-label="Rechtliches"><a href="impressum.html" data-en="Legal notice">Impressum</a><a href="datenschutz.html" data-en="Privacy policy">Datenschutz</a><a href="nutzungsbedingungen.html" data-en="Terms of service">Nutzungsbedingungen</a></nav>
   </div>
 </footer>
