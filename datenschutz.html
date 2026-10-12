@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- VORSCHAU: beim Go-Live entfernen -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#010726">
+<link rel="icon" href="assets/logo.webp">
+<title>Datenschutzerklärung | Optimis AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,500;12..96,700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: dark single-world page. Hero = headline left, live 3D voice orb right with call transcript.
+   Then: sequence (Ablauf) with scroll-filled spine, interactive service demo stage, promise list, closing CTA. */
+:root{
+  color-scheme: dark;
+  --ink:#010726;          /* logo navy, deepest */
+  --deep:#06124A;         /* logo navy, raised */
+  --line:rgba(120,170,255,.16);
+  --text:#E8ECF4;
+  --muted:#8E9CC4;
+  --signal:#0A64F8;       /* logo electric blue */
+  --glow:#1ED0F8;         /* logo cyan */
+  --gold:#B6F8F8;         /* logo ice highlight */
+  --f-display:"Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --f-body:"Geist", "Helvetica Neue", Arial, sans-serif;
+  --f-mono:"Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --gutter:clamp(16px, 4vw, 48px);
+  --max:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink); color:var(--text);
+  font-family:var(--f-body); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+a{color:inherit}
+::selection{background:var(--signal); color:var(--ink)}
+:focus-visible{outline:2px solid var(--glow); outline-offset:3px; border-radius:6px}
+.wrap{max-width:var(--max); margin-inline:auto; padding-inline:var(--gutter)}
+
+/* film grain for depth */
+.grain{position:fixed; inset:0; pointer-events:none; z-index:60; opacity:.07; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed; top:0; left:0; right:0; z-index:50; padding-top:env(safe-area-inset-top,0px);
+  transition:background .4s, border-color .4s; border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(1,7,38,.72); backdrop-filter:blur(18px) saturate(1.4); -webkit-backdrop-filter:blur(18px) saturate(1.4); border-color:var(--line)}
+.nav-in{display:flex; align-items:center; justify-content:space-between; gap:24px; height:72px}
+.logo{display:flex; align-items:center; text-decoration:none}
+.logo img{height:46px; width:auto; aspect-ratio:340/109; object-fit:contain; display:block}
+.foot-logo{height:34px; width:auto; aspect-ratio:340/109; align-self:flex-start; object-fit:contain; display:block}
+.nav-links{display:flex; gap:32px; font-size:14px; color:var(--muted)}
+.nav-links a{text-decoration:none; transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex; align-items:center; gap:14px}
+.lang{display:flex; border:1px solid var(--line); border-radius:999px; padding:3px; font-size:12px; font-family:var(--f-mono)}
+.lang button{all:unset; cursor:pointer; padding:4px 10px; border-radius:999px; color:var(--muted)}
+.lang button[aria-pressed="true"]{background:rgba(10,100,248,.16); color:var(--text)}
+
+.btn{display:inline-flex; align-items:center; gap:10px; text-decoration:none; font-weight:500; font-size:15px;
+  border-radius:999px; padding:14px 24px; transition:transform .25s, box-shadow .3s, background .3s; cursor:pointer; border:0; font-family:inherit}
+.btn-primary{background:linear-gradient(180deg,#2E86FF, var(--signal)); color:#FFFFFF;
+  box-shadow:0 0 0 1px rgba(30,208,248,.5) inset, 0 10px 40px -10px rgba(10,100,248,.8)}
+.btn-primary:hover{transform:translateY(-2px); box-shadow:0 0 0 1px rgba(30,208,248,.7) inset, 0 16px 50px -10px rgba(10,100,248,1)}
+.btn-ghost{color:var(--text); border:1px solid var(--line); background:rgba(255,255,255,.02)}
+.btn-ghost:hover{border-color:rgba(30,208,248,.4); background:rgba(10,100,248,.06)}
+.btn-sm{padding:9px 16px; font-size:13px}
+.btn svg{width:16px; height:16px}
+
+/* ---------- HERO ---------- */
+.hero{position:relative; padding-top:calc(120px + env(safe-area-inset-top,0px)); padding-bottom:72px; overflow:hidden}
+.hero::before{content:""; position:absolute; inset:-20% -10% auto; height:900px; pointer-events:none;
+  background:radial-gradient(ellipse 50% 45% at 72% 40%, rgba(10,100,248,.30), transparent 70%),
+             radial-gradient(ellipse 30% 30% at 20% 10%, rgba(182,248,248,.06), transparent 70%)}
+.hero-grid{position:relative; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:24px; align-items:center}
+.pill{display:inline-flex; align-items:center; gap:10px; font-size:13px; color:var(--gold);
+  border:1px solid rgba(182,248,248,.25); border-radius:999px; padding:6px 14px 6px 8px; background:rgba(182,248,248,.04)}
+.pill i{width:8px; height:8px; border-radius:50%; background:var(--gold); box-shadow:0 0 10px var(--gold); display:block; margin-left:4px; animation:breathe 2.4s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.35}}
+h1{font-family:var(--f-display); font-weight:300; font-size:clamp(44px, 6.4vw, 88px); line-height:.98; letter-spacing:-.045em; margin:28px 0 28px; text-wrap:balance}
+h1 strong{font-weight:700; display:block;
+  background:linear-gradient(100deg, var(--text) 10%, var(--glow) 45%, var(--signal) 70%, var(--text) 95%);
+  background-size:220% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:sheen 9s ease-in-out infinite}
+@keyframes sheen{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+.lede{font-size:clamp(17px,1.5vw,19px); color:#B8C1D3; max-width:34em; margin:0 0 14px}
+.lede-2{font-size:15px; color:var(--muted); max-width:36em; margin:0 0 36px}
+.hero-ctas{display:flex; flex-wrap:wrap; gap:12px}
+.assure{display:flex; flex-wrap:wrap; gap:10px 28px; margin-top:40px; font-size:14px; color:var(--muted); list-style:none; padding:0}
+.assure li{display:flex; align-items:center; gap:8px}
+.assure svg{width:16px; height:16px; color:var(--glow); flex:none}
+
+.reveal{animation:rise 1s cubic-bezier(.2,.7,.1,1) both}
+.d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.28s}.d4{animation-delay:.4s}.d5{animation-delay:.52s}
+@keyframes rise{from{opacity:0; transform:translateY(22px); filter:blur(6px)}to{opacity:1; transform:none; filter:none}}
+
+/* orb stage */
+.stage{position:relative; aspect-ratio:1/1; max-width:100%; width:100%; min-height:0}
+#orb{position:absolute; inset:-12%; width:124%; height:124%; display:block}
+.orb-fallback{position:absolute; inset:18%; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #B6F8F8, var(--signal) 35%, #06124A 70%, transparent 72%);
+  filter:blur(1px); box-shadow:0 0 120px rgba(10,100,248,.5)}
+.call{position:absolute; left:50%; bottom:2%; transform:translateX(-50%); width:min(420px, 100%);
+  background:rgba(10,16,32,.66); border:1px solid var(--line); border-radius:18px; padding:14px 16px;
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.call-head{display:flex; align-items:center; justify-content:space-between; font-family:var(--f-mono); font-size:11px; color:var(--muted); margin-bottom:8px}
+.live{display:flex; align-items:center; gap:7px; color:#7DF0B4}
+.live i{width:7px; height:7px; border-radius:50%; background:#7DF0B4; box-shadow:0 0 8px #7DF0B4; animation:breathe 1.2s infinite}
+.call-line{min-height:3.2em; font-size:15px; line-height:1.45}
+.who{font-family:var(--f-mono); font-size:11px; letter-spacing:.04em; margin-right:6px}
+.who.agent{color:var(--glow)} .who.caller{color:var(--gold)}
+.caret{display:inline-block; width:2px; height:1em; background:var(--glow); vertical-align:-2px; margin-left:2px; animation:breathe .8s steps(1) infinite}
+
+/* ---------- SECTIONS ---------- */
+section{position:relative}
+.sec{padding-block:clamp(80px, 11vw, 150px)}
+.sec-head{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:32px 64px; align-items:end; margin-bottom:64px}
+.kicker{font-size:14px; color:var(--glow); margin:0 0 14px; font-weight:500}
+h2{font-family:var(--f-display); font-weight:300; font-size:clamp(34px, 4.6vw, 60px); line-height:1.02; letter-spacing:-.035em; margin:0; text-wrap:balance}
+h2 strong{font-weight:700}
+.sec-head p{color:#AEB7C9; margin:0; max-width:32em; font-size:17px}
+h3{font-family:var(--f-display); font-weight:500; letter-spacing:-.02em; font-size:24px; line-height:1.15; margin:0 0 10px}
+
+/* Ablauf: real sequence */
+.steps{position:relative; display:grid; gap:0}
+.spine{position:absolute; left:27px; top:28px; bottom:28px; width:2px; background:var(--line); border-radius:2px}
+.spine i{position:absolute; inset:0 0 auto; height:var(--p,0%); background:linear-gradient(var(--glow), var(--signal)); border-radius:2px; box-shadow:0 0 14px var(--signal)}
+.step{position:relative; display:grid; grid-template-columns:56px minmax(0,1fr) auto; gap:28px; align-items:start; padding:28px 0; border-top:1px solid var(--line)}
+.step:last-child{border-bottom:1px solid var(--line)}
+.node{width:56px; height:56px; border-radius:50%; display:grid; place-items:center; font-family:var(--f-mono); font-size:14px;
+  background:var(--ink); border:1px solid var(--line); color:var(--muted); position:relative; z-index:1; transition:all .5s}
+.step.on .node{border-color:var(--signal); color:var(--text); box-shadow:0 0 0 6px rgba(10,100,248,.08), 0 0 30px rgba(10,100,248,.4)}
+.step p{color:#AEB7C9; margin:0; max-width:40em}
+.cost{text-align:right; min-width:150px}
+.cost b{display:block; font-family:var(--f-display); font-weight:500; font-size:34px; letter-spacing:-.03em; line-height:1; font-variant-numeric:tabular-nums}
+.cost span{font-size:13px; color:var(--muted)}
+.step:last-child .cost b{color:var(--gold); font-size:22px; line-height:1.2}
+
+/* Services: interactive stage */
+.svc{display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:48px; align-items:stretch}
+.svc-list{display:flex; flex-direction:column; gap:10px}
+.svc-tab{all:unset; box-sizing:border-box; cursor:pointer; display:block; padding:24px 26px; border-radius:20px; border:1px solid transparent; transition:background .35s, border-color .35s}
+.svc-tab:hover{background:rgba(255,255,255,.02)}
+.svc-tab:focus-visible{outline:2px solid var(--glow)}
+.svc-tab[aria-selected="true"]{background:linear-gradient(180deg, rgba(10,100,248,.09), rgba(10,100,248,.02)); border-color:rgba(10,100,248,.28)}
+.svc-tab h3{display:flex; align-items:center; gap:12px; margin:0}
+.svc-tab h3 svg{width:22px; height:22px; color:var(--signal); flex:none}
+.svc-body{display:grid; grid-template-rows:0fr; transition:grid-template-rows .45s cubic-bezier(.2,.7,.1,1)}
+.svc-tab[aria-selected="true"] .svc-body{grid-template-rows:1fr}
+.svc-body > div{overflow:hidden}
+.svc-body p{color:#AEB7C9; margin:12px 0 14px}
+.tags{display:flex; flex-wrap:wrap; gap:8px; padding-bottom:4px}
+.tags span{font-size:12.5px; padding:5px 11px; border-radius:999px; border:1px solid var(--line); color:#C6CEDD}
+
+.demo-wrap{perspective:1400px; min-width:0}
+.demo{position:relative; height:100%; min-height:460px; border-radius:28px; padding:28px;
+  background:radial-gradient(120% 80% at 80% 0%, rgba(10,100,248,.16), transparent 60%), linear-gradient(180deg, #0A1C62, #030B32);
+  border:1px solid var(--line); box-shadow:0 60px 120px -50px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.06);
+  transform-style:preserve-3d; transition:transform .25s ease-out; overflow:hidden}
+.demo::after{content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+  background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%), rgba(30,208,248,.10), transparent 60%)}
+.demo-bar{display:flex; justify-content:space-between; align-items:center; font-family:var(--f-mono); font-size:11.5px; color:var(--muted); margin-bottom:22px; transform:translateZ(30px)}
+.dots{display:flex; gap:6px}.dots i{width:9px; height:9px; border-radius:50%; background:#1a2b72; display:block}
+.panel{display:none; transform:translateZ(50px)}
+.panel.active{display:block; animation:panelIn .5s cubic-bezier(.2,.7,.1,1)}
+@keyframes panelIn{from{opacity:0; transform:translateZ(50px) translateY(12px)}to{opacity:1; transform:translateZ(50px)}}
+.example{font-size:11.5px; color:var(--muted); margin-top:18px}
+.example a{color:var(--glow)}
+
+/* chat */
+.chat{display:flex; flex-direction:column; gap:12px}
+.bub{max-width:82%; padding:12px 16px; border-radius:18px; font-size:14.5px; line-height:1.45}
+.bub.user{align-self:flex-end; background:#12236E; border-bottom-right-radius:6px}
+.bub.bot{align-self:flex-start; background:rgba(10,100,248,.12); border:1px solid rgba(10,100,248,.25); border-bottom-left-radius:6px}
+.chip-ok{align-self:flex-start; display:inline-flex; gap:8px; align-items:center; font-size:12.5px; color:#7DF0B4; border:1px solid rgba(125,240,180,.3); background:rgba(125,240,180,.06); padding:6px 12px; border-radius:999px}
+.chip-ok svg{width:14px; height:14px}
+.typing{align-self:flex-start; display:flex; gap:4px; padding:14px 16px; background:rgba(10,100,248,.08); border-radius:18px}
+.typing i{width:6px; height:6px; border-radius:50%; background:var(--glow); animation:bounce 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:none; opacity:.4}30%{transform:translateY(-4px); opacity:1}}
+
+/* voice */
+.wave{display:flex; align-items:center; justify-content:center; gap:4px; height:120px; margin:6px 0 22px}
+.wave i{width:5px; border-radius:3px; background:linear-gradient(var(--glow), var(--signal)); height:12%; transition:height .09s}
+.flow{list-style:none; padding:0; margin:0; display:grid; gap:10px}
+.flow li{display:grid; grid-template-columns:56px minmax(0,1fr) auto; align-items:center; gap:12px; padding:12px 14px; border-radius:14px; background:rgba(255,255,255,.025); border:1px solid var(--line); font-size:14px}
+.flow time{font-family:var(--f-mono); font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums}
+.flow em{font-style:normal; font-size:12px; color:var(--glow)}
+
+/* workflow graph */
+.graph{width:100%; height:auto; display:block}
+.graph .edge{fill:none; stroke:rgba(10,100,248,.35); stroke-width:1.5}
+.graph .flowline{fill:none; stroke:var(--glow); stroke-width:2; stroke-dasharray:6 14; animation:dash 1.6s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-40}}
+.graph .box{fill:#08175A; stroke:rgba(150,180,255,.22)}
+.graph .core{fill:url(#coreGrad); stroke:rgba(30,208,248,.6)}
+.graph text{fill:var(--text); font-family:var(--f-body); font-size:13px}
+.graph .sub{fill:var(--muted); font-size:11px; font-family:var(--f-mono)}
+
+/* Warum */
+.why{display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:64px}
+.why-quote{position:sticky; top:120px; align-self:start}
+.why-quote p{color:#AEB7C9; font-size:17px; max-width:28em; margin:24px 0 0}
+.promises{list-style:none; margin:0; padding:0}
+.promises li{display:grid; grid-template-columns:40px minmax(0,1fr); gap:20px; padding:28px 0; border-top:1px solid var(--line); transition:background .3s}
+.promises li:last-child{border-bottom:1px solid var(--line)}
+.promises .ic{width:40px; height:40px; border-radius:12px; display:grid; place-items:center; background:rgba(10,100,248,.08); border:1px solid rgba(10,100,248,.2); color:var(--signal)}
+.promises .ic svg{width:20px; height:20px}
+.promises h3{font-size:21px; margin:6px 0 6px}
+.promises p{margin:0; color:#AEB7C9}
+
+/* CTA */
+.cta{position:relative; overflow:hidden; border-radius:36px; padding:clamp(48px,8vw,110px) clamp(24px,6vw,90px);
+  background:radial-gradient(60% 90% at 85% 120%, rgba(10,100,248,.35), transparent 60%),
+             radial-gradient(40% 60% at 0% 0%, rgba(182,248,248,.08), transparent 60%), #05104A;
+  border:1px solid var(--line)}
+.cta-ring{position:absolute; right:-160px; bottom:-220px; width:620px; height:620px; border-radius:50%; pointer-events:none;
+  background:conic-gradient(from 0deg, transparent, rgba(30,208,248,.5), transparent 30%, rgba(10,100,248,.35), transparent 70%);
+  -webkit-mask:radial-gradient(circle, transparent 62%, #000 63%, #000 64%, transparent 65%);
+          mask:radial-gradient(circle, transparent 62%, #000 63%, #000 64%, transparent 65%);
+  animation:spin 14s linear infinite}
+.cta-ring.r2{width:460px; height:460px; right:-80px; bottom:-140px; animation-duration:22s; animation-direction:reverse; opacity:.6}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cta h2{max-width:14em; font-size:clamp(36px,5vw,68px)}
+.cta p{color:#B8C1D3; font-size:18px; max-width:30em; margin:24px 0 36px}
+.cta-row{display:flex; flex-wrap:wrap; gap:14px 28px; align-items:center; position:relative}
+.mail{display:flex; align-items:center; gap:10px; font-family:var(--f-mono); font-size:14px; color:#C6CEDD}
+.mail span{user-select:all}
+.copy{all:unset; cursor:pointer; font-family:var(--f-body); font-size:12px; color:var(--muted); border:1px solid var(--line); padding:4px 10px; border-radius:999px}
+.copy:hover{color:var(--text)}
+
+footer{padding-block:56px 40px; color:var(--muted); font-size:14px}
+.foot{display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px; border-top:1px solid var(--line); padding-top:32px}
+.foot nav{display:flex; gap:24px}
+.foot a{text-decoration:none}.foot a:hover{color:var(--text)}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 980px){
+  .nav-links{display:none}
+  .hero-grid{grid-template-columns:minmax(0,1fr)}
+  .stage{max-width:520px; margin:8px auto 0}
+  .sec-head,.svc,.why{grid-template-columns:minmax(0,1fr)}
+  .why-quote{position:static}
+  .demo{min-height:420px}
+}
+@media (max-width: 620px){
+  .nav-right .btn{display:none}
+  .step{grid-template-columns:56px minmax(0,1fr); gap:18px}
+  .cost{grid-column:2; text-align:left}
+  .demo{padding:20px; border-radius:22px}
+  .bub{max-width:92%}
+  .flow li{grid-template-columns:48px minmax(0,1fr)}
+  .flow em{grid-column:2}
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important; transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+<style>
+.legal-main{padding-top:calc(120px + env(safe-area-inset-top,0px)); padding-bottom:96px}
+.legal-wrap{max-width:860px; margin-inline:auto; padding-inline:var(--gutter)}
+.back{display:inline-flex; align-items:center; gap:8px; color:var(--muted); text-decoration:none; font-size:14px; margin-bottom:28px; transition:color .2s}
+.back:hover{color:var(--text)}
+.back svg{width:16px; height:16px}
+.legal-card{position:relative; border-radius:28px; padding:clamp(28px,5vw,56px); border:1px solid var(--line);
+  background:radial-gradient(120% 60% at 100% 0%, rgba(10,100,248,.14), transparent 60%), linear-gradient(180deg, #08175A, #030B32);
+  box-shadow:0 60px 120px -60px rgba(0,0,0,.9)}
+.legal{color:#C2CBE0; font-size:16px; line-height:1.7; min-width:0; overflow-wrap:anywhere}
+.legal .eyebrow{color:var(--glow); font-size:14px; font-weight:500; margin:0 0 10px}
+.legal h1{font-family:var(--f-display); font-weight:500; font-size:clamp(32px,4.4vw,52px); line-height:1.05; letter-spacing:-.035em; color:var(--text); margin:0 0 12px; text-wrap:balance}
+.legal h1 + p{color:var(--muted); margin-top:0}
+.legal h2{font-family:var(--f-display); font-weight:500; font-size:clamp(20px,2.2vw,25px); letter-spacing:-.02em; color:var(--text); margin:44px 0 12px; line-height:1.2; text-wrap:balance}
+.legal h3{font-size:17px; color:var(--text); margin:24px 0 8px}
+.legal section{padding-bottom:8px}
+.legal section + section{border-top:1px solid var(--line); margin-top:32px}
+.legal section > h2:first-child{margin-top:32px}
+.legal p{margin:0 0 12px; max-width:68ch}
+.legal .strong, .legal strong{color:var(--text); font-weight:600}
+.legal ul,.legal ol{padding-left:22px; margin:0 0 14px; display:grid; gap:6px; max-width:68ch}
+.legal li::marker{color:var(--glow)}
+.legal a{color:var(--glow); text-decoration-color:rgba(30,208,248,.4); text-underline-offset:3px}
+.legal a:has(> .ic){display:flex; align-items:center; gap:12px; color:#C2CBE0; text-decoration:none; margin-bottom:10px}
+.legal a:has(> .ic):hover{color:var(--text)}
+.legal .ic{width:18px; height:18px; color:var(--glow); flex:none}
+.legal .box{background:rgba(1,7,38,.5); border:1px solid var(--line); border-radius:16px; padding:18px 20px; margin:12px 0 16px}
+.legal .box p{margin-bottom:4px}
+.legal .addr p{margin:0 0 2px}
+.legal-links{display:flex; flex-wrap:wrap; gap:10px; margin-top:36px}
+.legal-links a{font-size:14px; text-decoration:none; color:var(--text); border:1px solid var(--line); border-radius:999px; padding:9px 16px; transition:border-color .2s, background .2s}
+.legal-links a:hover{border-color:rgba(30,208,248,.4); background:rgba(10,100,248,.08)}
+.legal-links a[aria-current="page"]{display:none}
+</style>
+<style>body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="index.html" aria-label="Optimis AI Startseite" data-aria-en="Optimis AI home"><img id="logoImg" src="assets/logo.webp" alt="Optimis AI – Advanced Technology" width="143" height="46"></a>
+    <nav class="nav-links" aria-label="Hauptnavigation">
+      <a href="index.html#ablauf" data-en="Process">Ablauf</a><a href="index.html#leistungen" data-en="Services">Leistungen</a><a href="index.html#warum" data-en="Why us">Warum wir</a><a href="index.html#kontakt" data-en="Contact">Kontakt</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Sprache"><button aria-pressed="true">DE</button><button aria-pressed="false">EN</button></div>
+      <a class="btn btn-primary btn-sm" href="mailto:info@optimis-ai.com?subject=Kostenlose%20Beratung" data-en="Book a call">Beratung buchen</a>
+    </div>
+  </div>
+</header>
+
+<main class="legal-main">
+  <div class="legal-wrap">
+    <a class="back" href="index.html"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 8H3M7 4L3 8l4 4"/></svg><span data-en="Back to home page">Zurück zur Startseite</span></a>
+    <article class="legal-card">
+      <div class="legal" data-lang="de"><h1>Datenschutzerklärung</h1><p>Stand: 28.02.2026</p><div><section><h2>1. Informationen zum Verantwortlichen (Art. 13 DSGVO)</h2><div class="addr"><p>Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO):</p><div class="box"><p>Optimis AI</p><p>Geschäftsführer: Holger Kretzschmar</p><p>Fichtenstr. 6</p><p>82178 Puchheim</p><p>Deutschland</p><p>Email: info@optimis-ai.com</p><p>Phone: +49 157 57111880</p></div></div></section><section><h2>2. Allgemeine Informationen zur Datenverarbeitung</h2><div><p>Wir verarbeiten personenbezogene Daten gemäß:</p><ul><li>Verordnung (EU) 2016/679 (Datenschutz-Grundverordnung – DSGVO)</li><li>Bundesdatenschutzgesetz (BDSG)</li><li>Geltende Telekommunikations- und Digitale-Dienste-Gesetze</li></ul><p>Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder identifizierbare natürliche Person beziehen.</p><p>Wir verarbeiten personenbezogene Daten nur in dem Umfang, der für die Bereitstellung unserer Dienste, den Betrieb unserer Website und die Erfüllung vertraglicher Pflichten erforderlich ist.</p></div></section><section><h2>3. Datenerfassung beim Besuch unserer Website</h2><div><p>Beim Besuch unserer Website erfasst unser Hosting-Anbieter automatisch:</p><ul><li>IP-Adresse</li><li>Datum und Uhrzeit des Zugriffs</li><li>Browsertyp und -version</li><li>Betriebssystem</li><li>Referrer-URL</li><li>Besuchte Seiten</li></ul><p><strong>Rechtsgrundlage:</strong></p><p>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am sicheren und stabilen Betrieb der Website).</p><p>Logdateien werden aus Sicherheitsgründen gespeichert und automatisch gelöscht.</p></div></section><section><h2>4. Kontaktformulare und E-Mail-Kommunikation</h2><div><p>Bei Kontaktaufnahme per Formular oder E-Mail verarbeiten wir:</p><ul><li>Name</li><li>E-Mail-Adresse</li><li>Firmenname (falls angegeben)</li><li>Nachrichteninhalt</li></ul><p><strong>Rechtsgrundlage:</strong></p><ul><li>Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen)</li><li>Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Kommunikation)</li></ul><p>Daten werden gelöscht, sobald die Anfrage geklärt ist, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p></div></section><section><h2>5. Verarbeitung von Kundendaten (KI-Dienste)</h2><div><p>Bei der Bereitstellung von KI-Voice-Agents, Chatbots oder Automatisierungsdiensten verarbeiten wir möglicherweise personenbezogene Daten im Auftrag unserer Kunden.</p><p>Dies kann umfassen:</p><ul><li>Anrufaufzeichnungen</li><li>Sprachdaten</li><li>Transkripte</li><li>Kundennamen und Kontaktdaten</li><li>CRM-Daten</li><li>Supportanfragen</li></ul><p>In diesen Fällen:</p><ul><li>Ist der Kunde der Verantwortliche</li><li>Agieren wir als Auftragsverarbeiter gemäß Art. 28 DSGVO</li><li>Wird ein separater Auftragsverarbeitungsvertrag (AVV) geschlossen</li></ul><p>Wir verarbeiten Daten ausschließlich nach dokumentierten Anweisungen des Kunden.</p></div></section><section><h2>6. Einsatz von KI-Systemen</h2><div><p>Unsere Dienste können KI-Systeme umfassen, die Eingabedaten verarbeiten, um automatisierte Antworten zu generieren.</p><p>KI-Verarbeitung kann umfassen:</p><ul><li>Verarbeitung natürlicher Sprache</li><li>Spracherkennung</li><li>Text-zu-Sprache-Generierung</li><li>Automatisierte Workflow-Ausführung</li></ul><p>KI-Ausgaben werden automatisch generiert und erfordern möglicherweise menschliche Aufsicht.</p><p><strong>Rechtsgrundlage:</strong></p><ul><li>Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung)</li><li>Art. 6 Abs. 1 lit. f DSGVO (berechtigte Geschäftsinteressen)</li></ul></div></section><section><h2>7. Einsatz von Drittanbietern</h2><div><p>Wir nutzen Drittanbieter für:</p><ul><li>Hosting-Dienste</li><li>Cloud-Infrastruktur</li><li>KI-Modell-Anbieter</li><li>Telekommunikationsdienste</li><li>E-Mail-Dienste</li></ul><p>Diese Anbieter können personenbezogene Daten in unserem Auftrag verarbeiten.</p><p>Sofern erforderlich:</p><ul><li>Werden Auftragsverarbeitungsverträge geschlossen</li><li>Werden Datentransfers außerhalb der EU durch Standardvertragsklauseln (Art. 46 DSGVO) abgesichert</li></ul><p>Eine Liste der Unterauftragsverarbeiter kann auf Anfrage zur Verfügung gestellt werden.</p></div></section><section><h2>8. Cookies und Tracking-Technologien</h2><div><p>Unsere Website kann Cookies und ähnliche Technologien verwenden.</p><p>Kategorien:</p><ul><li>Essenzielle Cookies (erforderlich für den Betrieb)</li><li>Analyse-Cookies (nur mit Einwilligung)</li><li>Marketing-Cookies (nur mit Einwilligung)</li></ul><p><strong>Rechtsgrundlage:</strong></p><ul><li>§ 25 TTDSG (Telekommunikation-Telemedien-Datenschutz-Gesetz)</li><li>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</li></ul><p>Nutzer können die Einwilligung jederzeit über den Cookie-Banner widerrufen.</p></div></section><section><h2>9. Datenspeicherung</h2><div><p>Wir speichern personenbezogene Daten nur so lange wie nötig für:</p><ul><li>Vertragserfüllung</li><li>Gesetzliche Aufbewahrungspflichten</li><li>Berechtigte Geschäftszwecke</li></ul><p>Gesetzliche Aufbewahrungsfristen (z. B. Handels- und Steuerrecht) können eine Speicherung von bis zu 10 Jahren erfordern.</p></div></section><section><h2>10. Datentransfers außerhalb der EU</h2><div><p>Falls personenbezogene Daten in Länder außerhalb der EU/des EWR übertragen werden, geschieht dies nur, wenn:</p><ul><li>Ein Angemessenheitsbeschluss vorliegt (Art. 45 DSGVO), oder</li><li>Standardvertragsklauseln implementiert sind (Art. 46 DSGVO)</li></ul></div></section><section><h2>11. Betroffenenrechte (Art. 15–22 DSGVO)</h2><div><p>Einzelpersonen haben das Recht auf:</p><ul><li>Auskunft (Art. 15 DSGVO)</li><li>Berichtigung (Art. 16 DSGVO)</li><li>Löschung (Art. 17 DSGVO)</li><li>Einschränkung der Verarbeitung (Art. 18 DSGVO)</li><li>Datenübertragbarkeit (Art. 20 DSGVO)</li><li>Widerspruch (Art. 21 DSGVO)</li></ul><p>Beruht die Verarbeitung auf einer Einwilligung, kann diese jederzeit widerrufen werden.</p><p>Anfragen können gesendet werden an: info@optimis-ai.com</p></div></section><section><h2>12. Beschwerderecht</h2><div><p>Sie haben das Recht, eine Beschwerde bei einer Aufsichtsbehörde einzureichen.</p><p>Für Deutschland ist die zuständige Behörde im Regelfall: Die Datenschutzbehörde Ihres Bundeslandes.</p></div></section><section><h2>13. Datensicherheit</h2><div><p>Wir implementieren angemessene technische und organisatorische Maßnahmen (TOMs) gemäß Art. 32 DSGVO, einschließlich:</p><ul><li>Verschlüsselung</li><li>Zugangskontrollen</li><li>Rollenbasierte Berechtigungen</li><li>Sichere Hosting-Infrastruktur</li></ul></div></section><section><h2>14. Automatisierte Entscheidungsfindung</h2><div><p>Sofern nicht ausdrücklich in einer separaten Vereinbarung angegeben, führen wir keine vollautomatisierte Entscheidungsfindung im Sinne von Art. 22 DSGVO durch, die rechtliche Wirkungen entfaltet.</p></div></section><section><h2>15. Änderungen dieser Datenschutzerklärung</h2><div><p>Wir behalten uns das Recht vor, diese Datenschutzerklärung zu aktualisieren, um rechtliche oder technische Änderungen abzubilden.</p></div></section></div></div>
+      <div class="legal" data-lang="en" lang="en" hidden><h1>PRIVACY POLICY</h1><p>Effective Date: 28.02.2026</p><div><section><h2>1. Controller Information (Art. 13 GDPR)</h2><div class="addr"><p>Controller within the meaning of the General Data Protection Regulation (GDPR):</p><div class="box"><p>Optimis AI</p><p>Managing Director: Holger Kretzschmar</p><p>Fichtenstr. 6</p><p>82178 Puchheim</p><p>Germany</p><p>Email: info@optimis-ai.com</p><p>Phone: +49 157 57111880</p></div></div></section><section><h2>2. General Information on Data Processing</h2><div><p>We process personal data in accordance with:</p><ul><li>Regulation (EU) 2016/679 (General Data Protection Regulation – GDPR)</li><li>German Federal Data Protection Act (BDSG)</li><li>Applicable telecommunications and digital services laws</li></ul><p>Personal data means any information relating to an identified or identifiable natural person.</p><p>We process personal data only to the extent necessary to provide our services, operate our website, and fulfill contractual obligations.</p></div></section><section><h2>3. Data Collected When Visiting Our Website</h2><div><p>When you visit our website, our hosting provider automatically collects:</p><ul><li>IP address</li><li>Date and time of access</li><li>Browser type and version</li><li>Operating system</li><li>Referrer URL</li><li>Accessed pages</li></ul><p><strong>Legal basis:</strong></p><p>Art. 6(1)(f) GDPR (legitimate interest in secure and stable operation of the website).</p><p>Log files are stored for security reasons and automatically deleted.</p></div></section><section><h2>4. Contact Forms and Email Communication</h2><div><p>If you contact us via contact form or email, we process:</p><ul><li>Name</li><li>Email address</li><li>Company name (if provided)</li><li>Message content</li></ul><p><strong>Legal basis:</strong></p><ul><li>Art. 6(1)(b) GDPR (pre-contractual measures)</li><li>Art. 6(1)(f) GDPR (legitimate interest in communication)</li></ul><p>Data is deleted once the request is resolved unless statutory retention obligations apply.</p></div></section><section><h2>5. Processing of Client Data (AI Services)</h2><div><p>When providing AI voice agents, chatbots, or automation services, we may process personal data on behalf of our clients.</p><p>This may include:</p><ul><li>Call recordings</li><li>Voice data</li><li>Transcripts</li><li>Customer names and contact details</li><li>CRM data</li><li>Support inquiries</li></ul><p>In such cases:</p><ul><li>The client is the data controller</li><li>We act as data processor under Art. 28 GDPR</li><li>A separate Data Processing Agreement (DPA) is concluded</li></ul><p>We process data exclusively according to documented client instructions.</p></div></section><section><h2>6. Use of AI Systems</h2><div><p>Our services may involve AI systems that process input data to generate automated responses.</p><p>AI processing may include:</p><ul><li>Natural language processing</li><li>Voice recognition</li><li>Text-to-speech generation</li><li>Automated workflow execution</li></ul><p>AI outputs are generated automatically and may require human oversight.</p><p><strong>Legal basis:</strong></p><ul><li>Art. 6(1)(b) GDPR (contract performance)</li><li>Art. 6(1)(f) GDPR (legitimate business interests)</li></ul></div></section><section><h2>7. Use of Third-Party Service Providers</h2><div><p>We use third-party service providers for:</p><ul><li>Hosting services</li><li>Cloud infrastructure</li><li>AI model providers</li><li>Telecommunication services</li><li>Email services</li></ul><p>These providers may process personal data on our behalf.</p><p>Where required:</p><ul><li>Data Processing Agreements are concluded</li><li>Data transfers outside the EU are safeguarded by Standard Contractual Clauses (Art. 46 GDPR)</li></ul><p>A list of subprocessors can be provided upon request.</p></div></section><section><h2>8. Cookies and Tracking Technologies</h2><div><p>Our website may use cookies and similar technologies.</p><p>Categories:</p><ul><li>Essential cookies (necessary for operation)</li><li>Analytics cookies (only with consent)</li><li>Marketing cookies (only with consent)</li></ul><p><strong>Legal basis:</strong></p><ul><li>§ 25 TTDSG (German Telecommunications-Telemedia Data Protection Act)</li><li>Art. 6(1)(a) GDPR (consent)</li></ul><p>Users may withdraw consent at any time via the cookie banner.</p></div></section><section><h2>9. Data Retention</h2><div><p>We store personal data only as long as necessary for:</p><ul><li>Contract fulfillment</li><li>Legal retention obligations</li><li>Legitimate business purposes</li></ul><p>Statutory retention periods (e.g., commercial and tax law) may require storage for up to 10 years.</p></div></section><section><h2>10. Data Transfers Outside the EU</h2><div><p>If personal data is transferred to countries outside the EU/EEA, this is done only if:</p><ul><li>An adequacy decision exists (Art. 45 GDPR), or</li><li>Standard Contractual Clauses are implemented (Art. 46 GDPR)</li></ul></div></section><section><h2>11. Data Subject Rights (Art. 15–22 GDPR)</h2><div><p>Individuals have the right to:</p><ul><li>Access their data (Art. 15 GDPR)</li><li>Rectification (Art. 16 GDPR)</li><li>Erasure (Art. 17 GDPR)</li><li>Restriction of processing (Art. 18 GDPR)</li><li>Data portability (Art. 20 GDPR)</li><li>Object to processing (Art. 21 GDPR)</li></ul><p>Where processing is based on consent, consent may be withdrawn at any time.</p><p>Requests can be sent to: info@optimis-ai.com</p></div></section><section><h2>12. Right to Lodge a Complaint</h2><div><p>You have the right to lodge a complaint with a supervisory authority.</p><p>For Germany, the competent authority is generally: The data protection authority of your federal state (Bundesland).</p></div></section><section><h2>13. Data Security</h2><div><p>We implement appropriate technical and organizational measures (TOMs) in accordance with Art. 32 GDPR, including:</p><ul><li>Encryption</li><li>Access controls</li><li>Role-based permissions</li><li>Secure hosting infrastructure</li></ul></div></section><section><h2>14. Automated Decision-Making</h2><div><p>Unless explicitly stated in a separate agreement, we do not conduct fully automated decision-making within the meaning of Art. 22 GDPR that produces legal effects.</p></div></section><section><h2>15. Changes to This Privacy Policy</h2><div><p>We reserve the right to update this Privacy Policy to reflect legal or technical changes.</p></div></section></div></div>
+      <nav class="legal-links" aria-label="Rechtliches"><a href="impressum.html" data-de="Impressum" data-en="Legal notice">Impressum</a><a href="datenschutz.html" aria-current="page" data-de="Datenschutzerklärung" data-en="Privacy policy">Datenschutzerklärung</a><a href="nutzungsbedingungen.html" data-de="Nutzungsbedingungen" data-en="Terms of service">Nutzungsbedingungen</a><a href="index.html" data-de="Startseite" data-en="Home page">Startseite</a></nav>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div style="display:flex;flex-direction:column;gap:12px"><img class="foot-logo" id="footLogo" alt="Optimis AI" width="106" height="34"><span data-en="© 2026 Optimis AI · Munich">© 2026 Optimis AI · München</span></div>
+    <nav aria-label="Rechtliches"><a href="impressum.html" data-en="Legal notice">Impressum</a><a href="datenschutz.html" data-en="Privacy policy">Datenschutz</a><a href="nutzungsbedingungen.html" data-en="Terms of service">Nutzungsbedingungen</a></nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var TITLE = {de: 'Datenschutzerklärung' + ' | Optimis AI', en: 'Privacy policy' + ' | Optimis AI'};
+  document.getElementById('footLogo').src = document.getElementById('logoImg').src;
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('scrolled', scrollY > 20); };
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  var els = [].slice.call(document.querySelectorAll('[data-en]'));
+  els.forEach(function(e){ if (!e.hasAttribute('data-de')) e.setAttribute('data-de', e.textContent); });
+  function setLang(l){
+    document.documentElement.lang = l;
+    document.title = TITLE[l];
+    els.forEach(function(e){ e.textContent = e.getAttribute('data-' + l); });
+    var en = document.querySelector('.legal[data-lang="en"]');
+    if (en) { en.hidden = l !== 'en'; document.querySelector('.legal[data-lang="de"]').hidden = l === 'en'; }
+    document.querySelectorAll('.lang button').forEach(function(b){ b.setAttribute('aria-pressed', String(b.textContent.trim().toLowerCase() === l)); });
+    try { localStorage.setItem('optimis-lang', l); } catch (e) {}
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){ b.addEventListener('click', function(){ setLang(b.textContent.trim().toLowerCase()); }); });
+  var saved = null; try { saved = localStorage.getItem('optimis-lang'); } catch (e) {}
+  if (saved === 'en') setLang('en');
+})();
+</script>
+<!-- Optimis AI Chatbot Widget (gleiche API und Logik wie die bisherige Seite, Optik ans Redesign angepasst) -->
+<style>
+#optimis-fab{position:fixed; right:calc(24px + env(safe-area-inset-right,0px)); bottom:calc(24px + env(safe-area-inset-bottom,0px)); z-index:99999;
+  width:60px; height:60px; border-radius:50%; border:0; cursor:pointer; display:grid; place-items:center;
+  background:radial-gradient(circle at 35% 30%, #1ED0F8, #0A64F8 55%, #06124A 100%);
+  box-shadow:0 0 0 1px rgba(30,208,248,.45) inset, 0 12px 40px -8px rgba(10,100,248,.9); transition:transform .25s}
+#optimis-fab:hover{transform:translateY(-2px) scale(1.05)}
+#optimis-fab::after{content:""; position:absolute; inset:-6px; border-radius:50%; border:1px solid rgba(30,208,248,.35); animation:optPulse 2.6s ease-out infinite}
+@keyframes optPulse{0%{transform:scale(.9); opacity:.9}100%{transform:scale(1.35); opacity:0}}
+#optimis-fab svg{width:26px; height:26px; fill:#fff}
+#optimis-fab .x{display:none}
+#optimis-fab[aria-expanded="true"] .bubble{display:none}
+#optimis-fab[aria-expanded="true"] .x{display:block}
+#optimis-win{position:fixed; right:calc(24px + env(safe-area-inset-right,0px)); bottom:calc(98px + env(safe-area-inset-bottom,0px)); z-index:99998;
+  width:min(370px, calc(100vw - 32px)); height:min(540px, calc(100vh - 140px)); display:flex; flex-direction:column; overflow:hidden;
+  background:rgba(6,18,74,.82); backdrop-filter:blur(20px) saturate(1.3); -webkit-backdrop-filter:blur(20px) saturate(1.3);
+  border:1px solid rgba(120,170,255,.22); border-radius:22px; box-shadow:0 40px 80px -30px rgba(0,0,0,.85);
+  font-family:"Geist","Helvetica Neue",Arial,sans-serif; color:#E8ECF4;
+  transform-origin:bottom right; transition:opacity .22s, transform .22s}
+#optimis-win.hidden{opacity:0; transform:translateY(10px) scale(.96); pointer-events:none; visibility:hidden}
+#optimis-header{display:flex; align-items:center; gap:12px; padding:16px 18px; border-bottom:1px solid rgba(120,170,255,.16);
+  background:linear-gradient(180deg, rgba(10,100,248,.22), transparent)}
+#optimis-header .avatar{width:36px; height:36px; border-radius:50%; flex:none;
+  background:radial-gradient(circle at 35% 30%, #B6F8F8, #1ED0F8 35%, #0A64F8 70%); box-shadow:0 0 18px rgba(30,208,248,.5)}
+#optimis-header .info{flex:1; min-width:0}
+#optimis-header .name{font-weight:600; font-size:14.5px}
+#optimis-header .status{font-size:12px; color:#7DF0B4; display:flex; align-items:center; gap:6px}
+#optimis-header .status i{width:7px; height:7px; border-radius:50%; background:#7DF0B4; box-shadow:0 0 8px #7DF0B4; display:block}
+#optimis-close{all:unset; cursor:pointer; color:#8E9CC4; font-size:22px; line-height:1; padding:4px 6px; border-radius:8px}
+#optimis-close:hover{color:#fff}
+#optimis-msgs{flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px; overscroll-behavior:contain}
+.opt-msg{max-width:84%; padding:10px 14px; border-radius:16px; font-size:14px; line-height:1.5; word-break:break-word; white-space:pre-wrap}
+.opt-msg.bot{align-self:flex-start; background:rgba(10,100,248,.14); border:1px solid rgba(10,100,248,.3); border-bottom-left-radius:5px}
+.opt-msg.user{align-self:flex-end; background:#0A64F8; color:#fff; border-bottom-right-radius:5px}
+.opt-typing{align-self:flex-start; display:flex; gap:4px; padding:12px 14px; background:rgba(10,100,248,.1); border-radius:16px}
+.opt-typing i{width:6px; height:6px; border-radius:50%; background:#1ED0F8; animation:optBounce 1s infinite}
+.opt-typing i:nth-child(2){animation-delay:.15s}.opt-typing i:nth-child(3){animation-delay:.3s}
+@keyframes optBounce{0%,60%,100%{transform:none; opacity:.4}30%{transform:translateY(-4px); opacity:1}}
+.opt-action{align-self:flex-start; display:inline-block; background:linear-gradient(180deg,#2E86FF,#0A64F8); color:#fff !important; text-decoration:none;
+  font-size:13.5px; font-weight:600; padding:10px 16px; border-radius:999px; box-shadow:0 8px 24px -8px rgba(10,100,248,.9)}
+#optimis-footer{display:flex; gap:8px; padding:12px; border-top:1px solid rgba(120,170,255,.16)}
+#optimis-input{flex:1; min-width:0; border:1px solid rgba(120,170,255,.22); background:rgba(1,7,38,.6); color:#E8ECF4; border-radius:999px;
+  padding:10px 16px; font:inherit; font-size:14px; outline:none}
+#optimis-input::placeholder{color:#8E9CC4}
+#optimis-input:focus{border-color:#1ED0F8}
+#optimis-send{width:42px; height:42px; flex:none; border:0; border-radius:50%; cursor:pointer; display:grid; place-items:center; background:#0A64F8}
+#optimis-send:hover{background:#2E86FF}
+#optimis-send svg{width:17px; height:17px; fill:#fff}
+#optimis-privacy{font-size:11px; color:#8E9CC4; padding:0 16px 12px; line-height:1.4}
+#optimis-privacy a{color:#1ED0F8}
+@media (prefers-reduced-motion: reduce){#optimis-fab::after,.opt-typing i{animation:none}}
+</style>
+<script>
+(function () {
+  var API_URL = "https://optimis-ai-site.vercel.app/api/chat";
+  var BOT_NAME = "Optimis Assistant";
+  var T = {
+    de: { greeting:"Hallo! Ich bin der Optimis AI Assistent 👋 Wie kann ich Ihnen helfen?", placeholder:"Nachricht eingeben…",
+          error:"Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.", fetchError:"Entschuldigung, ich konnte keine Antwort abrufen.",
+          close:"Schließen", open:"Chat öffnen", send:"Senden",
+          privacy:'Ihre Angaben nutzen wir nur zur Kontaktaufnahme. <a href="datenschutz.html">Datenschutzerklärung</a>' },
+    en: { greeting:"Hello! I'm the Optimis AI Assistant 👋 How can I help you?", placeholder:"Type a message…",
+          error:"Something went wrong. Please try again.", fetchError:"Sorry, I couldn't get a response.",
+          close:"Close", open:"Open chat", send:"Send",
+          privacy:'Details you share are only used to contact you. <a href="datenschutz.html">Privacy policy</a>' }
+  };
+  function lang(){ return (document.documentElement.lang || "de").slice(0,2) === "en" ? "en" : "de"; }
+
+  var sessionId = null;
+  try { sessionId = sessionStorage.getItem("optimis_chat_session"); } catch (e) {}
+  if (!sessionId) {
+    sessionId = "sess_" + Math.random().toString(36).slice(2) + Date.now();
+    try { sessionStorage.setItem("optimis_chat_session", sessionId); } catch (e) {}
+  }
+  var history = [];
+
+  var fab = document.createElement("button");
+  fab.id = "optimis-fab"; fab.type = "button";
+  fab.setAttribute("aria-expanded", "false"); fab.setAttribute("aria-controls", "optimis-win");
+  fab.innerHTML = '<svg class="bubble" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>' +
+                  '<svg class="x" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"/></svg>';
+
+  var win = document.createElement("div");
+  win.id = "optimis-win"; win.className = "hidden"; win.setAttribute("role", "dialog"); win.setAttribute("aria-label", BOT_NAME);
+  win.innerHTML =
+    '<div id="optimis-header"><div class="avatar" aria-hidden="true"></div>' +
+      '<div class="info"><div class="name">' + BOT_NAME + '</div><div class="status"><i></i>Online</div></div>' +
+      '<button id="optimis-close" type="button">×</button></div>' +
+    '<div id="optimis-msgs" aria-live="polite"></div>' +
+    '<div id="optimis-footer"><input id="optimis-input" type="text" autocomplete="off" />' +
+      '<button id="optimis-send" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>' +
+    '<div id="optimis-privacy"></div>';
+  document.body.appendChild(fab);
+  document.body.appendChild(win);
+
+  var msgs = document.getElementById("optimis-msgs");
+  var input = document.getElementById("optimis-input");
+  var greetEl = null;
+
+  function applyLang(){
+    var t = T[lang()];
+    fab.setAttribute("aria-label", open ? t.close : t.open);
+    document.getElementById("optimis-close").setAttribute("aria-label", t.close);
+    document.getElementById("optimis-send").setAttribute("aria-label", t.send);
+    input.placeholder = t.placeholder;
+    document.getElementById("optimis-privacy").innerHTML = t.privacy;
+    if (greetEl && history.length === 0) greetEl.textContent = t.greeting;
+  }
+  function addMessage(text, role){
+    var el = document.createElement("div"); el.className = "opt-msg " + role; el.textContent = text;
+    msgs.appendChild(el); msgs.scrollTop = msgs.scrollHeight; return el;
+  }
+  function addAction(action){
+    if (!action || action.type !== "link" || !/^https:\/\//.test(action.url || "")) return;
+    var a = document.createElement("a"); a.className = "opt-action"; a.href = action.url; a.target = "_blank"; a.rel = "noopener";
+    a.textContent = action.label || "📅"; msgs.appendChild(a); msgs.scrollTop = msgs.scrollHeight;
+  }
+  function showTyping(){
+    var el = document.createElement("div"); el.className = "opt-typing"; el.id = "optimis-typing"; el.innerHTML = "<i></i><i></i><i></i>";
+    msgs.appendChild(el); msgs.scrollTop = msgs.scrollHeight;
+  }
+  function removeTyping(){ var t = document.getElementById("optimis-typing"); if (t) t.remove(); }
+
+  var busy = false;
+  function send(){
+    var text = input.value.trim();
+    if (!text || busy) return;
+    input.value = ""; busy = true;
+    addMessage(text, "user");
+    history.push({ role: "user", content: text });
+    showTyping();
+    var l = lang();
+    fetch(API_URL, { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages: history, sessionId: sessionId, lang: l }) })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        removeTyping();
+        var reply = data.message || T[l].fetchError;
+        addMessage(reply, "bot"); addAction(data.action);
+        history.push({ role: "assistant", content: reply });
+      })
+      .catch(function () { removeTyping(); addMessage(T[l].error, "bot"); })
+      .then(function () { busy = false; });
+  }
+
+  var open = false;
+  function toggleChat(){
+    open = !open;
+    win.classList.toggle("hidden", !open);
+    fab.setAttribute("aria-expanded", String(open));
+    if (open) {
+      if (!msgs.children.length) greetEl = addMessage(T[lang()].greeting, "bot");
+      setTimeout(function () { input.focus(); }, 120);
+    }
+    applyLang();
+  }
+  fab.addEventListener("click", toggleChat);
+  document.getElementById("optimis-close").addEventListener("click", toggleChat);
+  document.getElementById("optimis-send").addEventListener("click", send);
+  input.addEventListener("keydown", function (e) { if (e.key === "Enter") send(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && open) toggleChat(); });
+
+  /* follow the page's DE/EN switch */
+  new MutationObserver(applyLang).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+  applyLang();
+})();
+</script>
+
+
+</body>
+</html>
