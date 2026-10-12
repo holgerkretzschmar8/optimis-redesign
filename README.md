@@ -10,6 +10,7 @@ Live-Seite (React-App auf www.optimis-ai.com): kein gemeinsamer Code, kein Build
 | `index.html` | Die komplette Seite (HTML, CSS, JavaScript, DE/EN-Übersetzung) |
 | `impressum.html`, `datenschutz.html`, `nutzungsbedingungen.html` | Rechtsseiten im neuen Design. Texte 1:1 aus der bisherigen Seite übernommen (Stand REV00) |
 | `assets/logo.webp` | Optimis-Logo, freigestellt (auch als Favicon genutzt) |
+| `assets/booking.js` | Termin-Pop-up mit Calendly. Link oben in der Datei bei `CALENDLY_URL` eintragen. Ohne Link bleiben die Buttons E-Mail-Links. Calendly lädt erst nach Zustimmung des Besuchers |
 | `assets/three.min.js` | 3D-Bibliothek für den Voice-Orb (three.js r128, MIT-Lizenz), lokal statt über ein CDN |
 
 Schriften (Bricolage Grotesque, Geist) kommen von Google Fonts.
@@ -58,8 +59,7 @@ konkurriert nicht mit der Live-Seite.
 - [ ] `<meta name="robots" content="noindex, nofollow">` in `index.html` entfernen
 - [ ] Rechtstexte (Impressum, Datenschutz, Nutzungsbedingungen) inhaltlich prüfen. Sie sind aus REV00
       übernommen. Bei Änderungen an den Texten beide Versionen pflegen oder nur noch REV01
-- [ ] Buchungs-Buttons: führen aktuell per E-Mail an info@optimis-ai.com.
-      Bei Bedarf durch einen Buchungslink ersetzen (Calendly, Cal.com o. ä.)
+- [ ] Datenschutzerklärung um einen Abschnitt zu Calendly ergänzen (Terminbuchung)
 - [ ] Google-Ads-Tag (AW-18065908893) und ggf. PostHog übernehmen, mit Cookie-Banner.
       Absichtlich nicht in der Vorschau enthalten, damit Testbesuche eure Daten nicht verfälschen
 - [ ] Englische Version für SEO unter `/en` mit hreflang ausliefern
