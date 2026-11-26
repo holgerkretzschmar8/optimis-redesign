@@ -426,7 +426,7 @@ footer{padding-block:56px 40px; color:var(--muted); font-size:14px}
   /* Chat-Widget aus Buttons öffnen */
   document.addEventListener('click', function(ev){
     var b = ev.target.closest('[data-open-chat]'); if (!b) return;
-    var fab = document.getElementById('optimis-fab');
+    var host = document.getElementById('optimis-chat'); var fab = host && (host.shadowRoot || host).querySelector('.fab');
     if (fab && fab.getAttribute('aria-expanded') !== 'true') fab.click();
   });
 
